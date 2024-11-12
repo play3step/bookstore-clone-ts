@@ -23,9 +23,18 @@ export const light: theme = {
 export const dark: theme = {
   name: "dark",
   colors: {
-    primary: "brown",
-    background: "lightgray",
+    primary: "white",
+    background: "black",
     secondary: "blue",
     third: "green",
   },
+};
+
+export const getTheme = (themeName: ThemeName): theme => {
+  switch (themeName) {
+    case "light":
+      return light;
+    case "dark":
+      return dark;
+  }
 };
