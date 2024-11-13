@@ -1,5 +1,8 @@
 export type ThemeName = "light" | "dark";
-type ColorKey = "primary" | "background" | "secondary" | "third";
+
+export type HeadingSize = "large" | "medium" | "small";
+
+export type ColorKey = "primary" | "background" | "secondary" | "third";
 
 interface theme {
   name: ThemeName;
@@ -7,6 +10,11 @@ interface theme {
     // primary: string;
     // background: string;
     [key in ColorKey]: string;
+  };
+  heading: {
+    [key in HeadingSize]: {
+      fontSize: string;
+    };
   };
 }
 
@@ -18,9 +26,21 @@ export const light: theme = {
     secondary: "blue",
     third: "green",
   },
+  heading: {
+    large: {
+      fontSize: "2rem",
+    },
+    medium: {
+      fontSize: "1.5rem",
+    },
+    small: {
+      fontSize: "1rem",
+    },
+  },
 };
 
 export const dark: theme = {
+  ...light,
   name: "dark",
   colors: {
     primary: "white",
