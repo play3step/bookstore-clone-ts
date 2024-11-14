@@ -2,7 +2,13 @@ export type ThemeName = "light" | "dark";
 
 export type HeadingSize = "large" | "medium" | "small";
 
-export type ColorKey = "primary" | "background" | "secondary" | "third";
+export type ColorKey =
+  | "primary"
+  | "background"
+  | "secondary"
+  | "third"
+  | "border"
+  | "text";
 export type ButtonSize = "large" | "medium" | "small";
 export type ButtonScheme = "primary" | "normal";
 
@@ -42,6 +48,8 @@ export const light: theme = {
     background: "lightgray",
     secondary: "blue",
     third: "green",
+    border: "gray",
+    text: "black",
   },
   heading: {
     large: {
@@ -91,6 +99,8 @@ export const dark: theme = {
     background: "black",
     secondary: "blue",
     third: "green",
+    border: "gray",
+    text: "black",
   },
 };
 
