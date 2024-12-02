@@ -16,7 +16,7 @@ export interface SignupProps {
 
 const Login = () => {
   const nav = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
 
   const { isloggedIn, storeLogin, storeLoggout } = useAuthStore();
 

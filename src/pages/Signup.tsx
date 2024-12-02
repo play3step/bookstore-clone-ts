@@ -15,7 +15,7 @@ export interface SignupProps {
 
 const Signup = () => {
   const nav = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
   const {
     register,
     handleSubmit,

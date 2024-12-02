@@ -16,7 +16,7 @@ export interface SignupProps {
 
 const ResetPassword = () => {
   const nav = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
   const [resetReq, setResetReq] = useState(false);
 
   const {
