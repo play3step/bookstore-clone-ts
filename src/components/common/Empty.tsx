@@ -1,5 +1,4 @@
 import React from "react";
-import { FaSmileWink } from "react-icons/fa";
 import styled from "styled-components";
 import Title from "./Title";
 
