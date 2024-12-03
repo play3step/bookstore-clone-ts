@@ -105,7 +105,7 @@ function Cart() {
 
 export default Cart;
 
-const CartStyle = styled.div`
+export const CartStyle = styled.div`
   display: flex;
   gap: 24px;
   justify-content: space-between;
@@ -120,5 +120,26 @@ const CartStyle = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
+  }
+  .order-info {
+    h1 {
+      padding: 0 0 24px 0;
+    }
+  }
+  .delivery {
+    border: 0;
+    padding: 0 0 12px 0;
+    display: flex;
+    justify-content: start;
+    gap: 8px;
+  }
+  label {
+    width: 80px;
+  }
+  .input {
+    flex: 1;
+    input {
+      width: 100%;
+    }
   }
 `;
