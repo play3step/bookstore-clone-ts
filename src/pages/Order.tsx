@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Title from "../components/common/Title";
 import { CartStyle } from "./Cart";
 import CartSummary from "../components/cart/CartSummary";
@@ -7,6 +7,9 @@ import Button from "../components/common/Button";
 import InputText from "../components/common/InputText";
 import { useForm } from "react-hook-form";
 import { Delivery, OrderSheet } from "../model/order.model";
+import FindAddressBtn from "../components/order/FindAddressBtn";
+import { order } from "../apis/order.api";
+import { useAlert } from "../hooks/useAlert";
 
 interface DeliveryForm extends Delivery {
   addressDetail: string;
@@ -16,10 +19,13 @@ function Order() {
   const location = useLocation();
   const orderDataFromCart = location.state;
   const { totalQuantity, totalPrice, firstBookTitle } = orderDataFromCart;
+  const { showAlert, showConfirm } = useAlert();
+  const nav = useNavigate();
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<DeliveryForm>();
 
@@ -31,6 +37,12 @@ function Order() {
         address: `${data.address} ${data.addressDetail}`,
       },
     };
+    showConfirm("주문을 진행하시겠습니까?", () => {
+      order(orderData).then(() => {
+        showAlert("주문 되었습니다.");
+        nav("/orderlist");
+      });
+    });
   };
 
   return (
@@ -51,9 +63,11 @@ function Order() {
                     {...register("address", { required: true })}
                   />
                 </div>
-                <Button size="large" scheme="normal">
-                  주소 찾기
-                </Button>
+                <FindAddressBtn
+                  onCompleted={(address) => {
+                    setValue("address", address);
+                  }}
+                />
               </fieldset>
               {errors.address && <p>주소를 입력해주세요.</p>}
               <fieldset>
