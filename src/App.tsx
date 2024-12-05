@@ -78,6 +78,14 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
+  {
+    path: "/orderlist",
+    element: (
+      <Layout>
+        <Order />
+      </Layout>
+    ),
+  },
 ]);
 
 function App() {
