@@ -2,11 +2,11 @@ import styled from "styled-components";
 import Title from "../components/common/Title";
 import InputText from "../components/common/InputText";
 import Button from "../components/common/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
-import { signup } from "../apis/auth.api";
-import { useAlert } from "../hooks/useAlert";
+
+import { useAuth } from "@/hooks/useAuth";
 
 export interface SignupProps {
   email: string;
@@ -14,19 +14,16 @@ export interface SignupProps {
 }
 
 const Signup = () => {
-  const nav = useNavigate();
-  const { showAlert } = useAlert();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignupProps>();
 
+  const { userSignUp } = useAuth();
+
   const onSubmit = (data: SignupProps) => {
-    signup(data).then((res) => {
-      showAlert("회원가입 되었습니다.");
-      nav("/login");
-    });
+    userSignUp(data);
   };
   return (
     <>
